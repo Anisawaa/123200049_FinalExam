@@ -89,6 +89,25 @@ function btnresult_049_Callback(hObject, eventdata, handles)
 % hObject    handle to btnresult_049 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+k = [0, 1, 0, 0]
+w = [1, 3, 2, 4]
+
+[m,n] = size(x);
+w=w./sum(w);
+
+for j=1:n
+    if k(j)==0, w(j)=-1*w(j);
+    end
+end
+
+for i=1:m
+    S(i) = prod(x(i,:).^w);
+end
+
+V = S/sum(S);
+
+score = max(V);
+set(handles.score_049, 'string', score);
 
 
 % --- Executes during object creation, after setting all properties.
